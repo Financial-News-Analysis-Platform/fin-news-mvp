@@ -1,63 +1,65 @@
-# Fin-News MVP - 金融新闻分析平台
+# Fin-News MVP - Financial News Analysis Platform (In Progress)
 
-## 项目概述
+## Overview
 
-基于AWS云原生的金融新闻聚合与分析平台，集成RAG管道和LLM，生成每日股票洞察。
+An AWS-native financial news aggregation and analysis platform that integrates a RAG pipeline with LLMs to generate **daily stock insights**.  
+This project is currently **in progress**.
 
-## 技术架构
+## Architecture
 
-- **后端**: FastAPI + AWS Lambda
-- **数据库**: DynamoDB + S3
-- **向量数据库**: FAISS (EC2 t3.micro)
-- **前端**: Next.js + AWS Amplify
+- **Backend**: FastAPI + AWS Lambda
+- **Databases**: DynamoDB + S3
+- **Vector Database**: FAISS (EC2 t3.micro)
+- **Frontend**: Next.js + AWS Amplify
 - **AI/ML**: Sentence Transformers + OpenAI API
-- **部署**: GitHub Actions + AWS
+- **Deployment**: GitHub Actions + AWS
 
-## 项目结构
+## Project Structure
 
 ```
 fin-news-mvp/
 ├─ apps/
-│  ├─ ingest/                 # 数据采集 (A负责)
-│  ├─ index/                  # 分块+向量化+表结构 (B负责)
-│  ├─ retrieve/               # 检索/重排 (A负责)
-│  ├─ rag/                    # RAG两条链+JSON校验 (B负责)
-│  ├─ pricing/                # 价格影响 (A负责)
-│  ├─ api/                    # FastAPI后端 (B负责)
-│  └─ dashboard/              # 前端仪表盘 (B负责)
-├─ aws/                       # AWS配置和部署
-├─ data/                      # 本地数据存储
-├─ conf/                      # 配置文件
-└─ docs/                      # 文档和架构图
+│ ├─ ingest/                # Data ingestion (A)
+│ ├─ index/                 # Chunking + embeddings + indexing (B)
+│ ├─ retrieve/              # Retrieval / re-ranking (A)
+│ ├─ rag/                   # RAG pipelines + JSON validation (B)
+│ ├─ pricing/               # Price impact analysis (A)
+│ ├─ api/                   # FastAPI backend (B)
+│ └─ dashboard/             # Frontend dashboard (B)
+├─ aws/                     # AWS infra & deployment
+├─ data/                    # Local datasets
+├─ conf/                    # Configurations
+└─ docs/                    # Documentation & diagrams
 ```
 
-## 快速开始
 
-### 1. 环境准备
+## Getting Started
+
+### 1. Setup Environment
 ```bash
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. 配置环境变量
+### 2. Configure Environment Variables
 ```bash
 cp conf/.env.example conf/.env
-# 编辑 .env 文件，填入必要的API密钥和配置
+# Edit .env with required API keys and configs
 ```
 
-### 3. 本地开发
+### 3. Local Development
 ```bash
-# 启动API服务
+# Start API service
 cd apps/api && uvicorn server:app --reload
 
-# 启动前端
+# Start frontend
 cd apps/dashboard && streamlit run app.py
 ```
 
-## 部署到AWS
+## Deploying to AWS
 
-### 1. 使用Terraform部署基础设施
+### 1. Deploy Infrastructure with Terraform
 ```bash
 cd aws/terraform
 terraform init
@@ -65,42 +67,38 @@ terraform plan
 terraform apply
 ```
 
-### 2. 使用SAM部署Lambda函数
+### 2. Deploy Lambda with AWS SAM
 ```bash
 cd aws/lambda
 sam build
 sam deploy --guided
 ```
 
-## 成本控制
+## Cost Control
 
-- **MVP阶段**: <$15/月
-- **生产阶段**: <$30/月
-- 详细成本分析请参考 `docs/aws-architecture.md`
+- **MVP Phase**: <$15 / month
+- **Production Phase**: <$30 / month
+- Detailed breakdown `docs/aws-architecture.md`
 
-## 开发计划
+## Development Plan (In Progress)
 
-### Week 1: 数据 → 向量库
-- [x] 项目结构搭建
-- [ ] 数据采集接口
-- [ ] 分块和向量化
-- [ ] FAISS索引构建
+### Week 1: Data → Vector DB
+- [x] Project scaffolding
+- [ ] Data ingestion API
+- [ ] Chunking & embeddings
+- [ ] FAISS index build
 
-### Week 2: 检索 → RAG → 故事
-- [ ] 混合检索实现
-- [ ] 抽取链和摘要链
-- [ ] 故事组装逻辑
+### Week 2: Retrieval → RAG → Story
+- [ ] Hybrid retrieval
+- [ ] Extraction & summarization chains
+- [ ] Story assembly logic
 
-### Week 3: 价格 → 发布 → 评估
-- [ ] 价格影响分析
-- [ ] Web仪表盘
-- [ ] 定时任务和评估
+### Week 3: Pricing → Dashboard → Evaluation
+- [ ] Price impact analysis
+- [ ] Web dashboard
+- [ ] Scheduling & evaluation
 
-## 贡献指南
 
-- A: 负责数据采集、检索、价格分析
-- B: 负责处理、建库、RAG、前端
-
-## 许可证
+## License
 
 MIT License
