@@ -4,7 +4,7 @@
 
 set -e
 
-GIT_REPO=${1:-"https://github.com/yuhanzhang/fin-news-mvp.git"}
+GIT_REPO=${1:-"https://github.com/Financial-News-Analysis-Platform/fin-news-mvp.git"}
 
 # 颜色输出
 RED='\033[0;31m'
@@ -44,10 +44,10 @@ mkdir -p $DEPLOY_DIR
 cd $DEPLOY_DIR
 
 # 下载所有部署脚本
-wget -q https://raw.githubusercontent.com/yuhanzhang/fin-news-mvp/main/deploy/ec2-setup.sh
-wget -q https://raw.githubusercontent.com/yuhanzhang/fin-news-mvp/main/deploy/env-setup.sh
-wget -q https://raw.githubusercontent.com/yuhanzhang/fin-news-mvp/main/deploy/deploy-app.sh
-wget -q https://raw.githubusercontent.com/yuhanzhang/fin-news-mvp/main/deploy/monitoring-setup.sh
+wget -q https://raw.githubusercontent.com/Financial-News-Analysis-Platform/fin-news-mvp/deploy-scripts/deploy/ec2-setup.sh
+wget -q https://raw.githubusercontent.com/Financial-News-Analysis-Platform/fin-news-mvp/deploy-scripts/deploy/env-setup.sh
+wget -q https://raw.githubusercontent.com/Financial-News-Analysis-Platform/fin-news-mvp/deploy-scripts/deploy/deploy-app.sh
+wget -q https://raw.githubusercontent.com/Financial-News-Analysis-Platform/fin-news-mvp/deploy-scripts/deploy/monitoring-setup.sh
 
 chmod +x *.sh
 
