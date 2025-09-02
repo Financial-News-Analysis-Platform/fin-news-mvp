@@ -31,9 +31,9 @@ python scripts/build_index_incremental.py --limit 1000 --min_body_chars 400
 python scripts/test_incremental_build.py
 ```
 
-### 3. Start Search Service
+### 3. Start Service
 ```bash
-# Start the search API
+# Start FastAPI service
 uvicorn apps.service.search_api:app --host 0.0.0.0 --port 8000
 ```
 
@@ -61,7 +61,7 @@ curl "http://localhost:8000/status"
 python scripts/test_new_endpoints.py
 ```
 
-## API Endpoints
+## 🔍 API Endpoints
 
 ### Core Search Endpoints
 
@@ -75,6 +75,7 @@ python scripts/test_new_endpoints.py
   "top_k": 5
 }
 ```
+**Response**: Ranked news chunks with similarity scores
 
 #### 2. **POST /summarize** - AI-Powered Summarization
 ```json
@@ -163,6 +164,12 @@ fin-news-mvp/
 │   └─ service/               # Online services ✅
 │       ├─ llm_client.py      # OpenAI LLM client
 │       └─ search_api.py      # FastAPI search service
+├─ aws/                       # AWS infrastructure ✅
+│   └─ lambda/
+│       └─ ingest_news_v2/    # Data ingestion Lambda
+│           ├─ lambda_function.py  # Main ingestion logic
+│           ├─ requirements.txt    # Dependencies
+│           └─ lambda_ingest_news.zip  # Deployment package
 ├─ conf/                      # Configurations ✅
 │   ├─ aws_config.py          # AWS configuration
 │   ├─ tickers_alias.json     # Stock ticker aliases
