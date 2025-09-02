@@ -1,4 +1,4 @@
-#!/bin/bash
+tui daobu shu da#!/bin/bash
 # EC2部署脚本 - 金融新闻分析平台
 # 使用方法: sudo bash ec2-setup.sh
 
@@ -54,13 +54,24 @@ apt install -y \
     htop \
     nginx \
     supervisor \
-    awscli \
     jq \
     tree \
     vim \
     tmux
 
-# 3. 创建应用用户
+# 3. 安装AWS CLI (使用官方方法)
+log_info "安装AWS CLI..."
+if ! command -v aws &> /dev/null; then
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip awscliv2.zip
+    ./aws/install
+    rm -rf awscliv2.zip aws/
+    log_success "AWS CLI安装完成"
+else
+    log_info "AWS CLI已安装"
+fi
+
+# 4. 创建应用用户
 log_info "创建应用用户..."
 if ! id "finnews" &>/dev/null; then
     useradd -m -s /bin/bash finnews
@@ -70,7 +81,7 @@ else
     log_info "用户 finnews 已存在"
 fi
 
-# 4. 创建应用目录
+# 5. 创建应用目录
 log_info "创建应用目录..."
 APP_DIR="/opt/fin-news"
 mkdir -p $APP_DIR
