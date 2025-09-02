@@ -5,7 +5,7 @@
 set -e
 
 APP_DIR="/opt/fin-news"
-GIT_REPO=${1:-"https://github.com/your-username/fin-news-mvp.git"}
+GIT_REPO=${1:-"https://github.com/yuhanzhang/fin-news-mvp.git"}
 
 # 颜色输出
 RED='\033[0;31m'

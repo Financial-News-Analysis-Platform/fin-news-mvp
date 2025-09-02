@@ -38,7 +38,7 @@ sudo bash env-setup.sh
 ```bash
 # 下载并运行应用部署脚本
 wget https://raw.githubusercontent.com/your-repo/fin-news-mvp/main/deploy/deploy-app.sh
-sudo bash deploy-app.sh https://github.com/your-username/fin-news-mvp.git
+sudo bash deploy-app.sh https://github.com/yuhanzhang/fin-news-mvp.git
 ```
 
 #### 3.4 监控配置

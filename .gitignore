@@ -25,8 +25,8 @@ MANIFEST
 venv/
 env/
 ENV/
-.venv/
-.env/
+env.bak/
+venv.bak/
 
 # IDE
 .vscode/
@@ -44,11 +44,27 @@ ENV/
 ehthumbs.db
 Thumbs.db
 
-# Project specific
-data/cache/
-data/faiss_index/
-.artifacts/
+# Logs
 *.log
+logs/
+*.log.*
+
+# Data files
+data/
+*.csv
+*.parquet
+*.json
+*.pkl
+*.npy
+*.faiss
+
+# Artifacts
+.artifacts/
+artifacts/
+*.zip
+*.tar.gz
+
+# Environment variables
 .env
 .env.local
 .env.production
@@ -58,13 +74,49 @@ data/faiss_index/
 *.pem
 *.key
 
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# pytest
-.pytest_cache/
-.coverage
-htmlcov/
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
 
 # mypy
 .mypy_cache/
@@ -73,9 +125,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-# Temporary files
-*.tmp
-*.temp
-*.bak
-*.backup 
