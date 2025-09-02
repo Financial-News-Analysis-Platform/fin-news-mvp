@@ -11,6 +11,9 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+def check_norm(vecs: np.ndarray):
+    norms = np.linalg.norm(vecs, axis=1)
+    return float(norms.mean()), float(np.percentile(norms,5)), float(np.percentile(norms,95))
 
 class TextEmbedder:
     """文本向量化器"""
@@ -67,7 +70,7 @@ class TextEmbedder:
             logger.error(f"Error encoding texts: {e}")
             raise
     
-    def encode_batch(self, texts: List[str], batch_size: int = 32,
+    def encode_batch(self, texts: List[str], batch_size: int = 64,  # 优化：从32改为64
                      normalize: bool = True) -> np.ndarray:
         """
         批量编码文本
