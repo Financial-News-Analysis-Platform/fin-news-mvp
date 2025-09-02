@@ -95,8 +95,9 @@ log_info "配置Python环境..."
 sudo -u finnews python3 -m venv $APP_DIR/venv
 sudo -u finnews $APP_DIR/venv/bin/pip install --upgrade pip
 
-# 6. 安装Python依赖
-log_info "安装Python依赖..."
+# 6. 安装基础Python依赖
+log_info "安装基础Python依赖..."
+sudo -u finnews $APP_DIR/venv/bin/pip install --upgrade pip
 sudo -u finnews $APP_DIR/venv/bin/pip install \
     fastapi==0.116.1 \
     uvicorn==0.35.0 \
@@ -104,18 +105,10 @@ sudo -u finnews $APP_DIR/venv/bin/pip install \
     python-dotenv==1.0.0 \
     pandas==2.1.4 \
     numpy==1.24.3 \
-    pyarrow==21.0.0 \
     requests==2.31.0 \
-    beautifulsoup4==4.12.2 \
-    langchain==0.1.0 \
-    openai>=1.0.0 \
-    tiktoken==0.11.0 \
     boto3>=1.26.0 \
     tqdm==4.66.1 \
-    click==8.1.7 \
-    faiss-cpu \
-    sentence-transformers \
-    gunicorn
+    click==8.1.7
 
 # 7. 配置AWS CLI
 log_info "配置AWS CLI..."
